@@ -4,7 +4,9 @@ package com.hilarywang29.notepad2;
  * Created by Hilar on 2017-08-29.
  */
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,10 +19,15 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.hilarywang29.notepad2.R;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
     private ListView mListNotes;
+    boolean alpha = false;
+    boolean oldToNew = true;
+    boolean newToOld = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,40 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, NewNoteActivity.class);
             startActivity(intent);
             return true;
+        } else if (item.getItemId() == R.id.action_sortOrder){
+//            CharSequence sortOrder[] = new CharSequence[] {"Alphabetically", "Date Created (Old-New)", "Date Created (New-Old)"};
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Sort Notes");
+//            builder.setMessage("How would you like to sort your notes?");
+            builder.setPositiveButton("Alphabetically", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alpha = true;
+                    newToOld = false;
+                    oldToNew = false;
+                    onResume();
+                }
+            });
+            builder.setNeutralButton("Date Created (Old-New)", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alpha = false;
+                    newToOld = false;
+                    oldToNew = true;
+                    onResume();
+                }
+            });
+            builder.setNegativeButton("Date Created (New-Old)", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alpha = false;
+                    newToOld = true;
+                    oldToNew = false;
+                    onResume();
+                }
+            });
+            builder.show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -57,6 +98,42 @@ public class MainActivity extends AppCompatActivity {
         mListNotes.setAdapter(null);
 
         ArrayList<Note> notes = Utilities.getAllSavedNotes(getApplicationContext());
+
+        if (newToOld == true) {
+            Collections.sort(notes, new Comparator<Note>() {
+                @Override
+                public int compare(Note o1, Note o2) {
+                    if (o1.getDateTime() > o2.getDateTime()) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                }
+            });
+        }
+        else if (alpha == true) {
+            Collections.sort(notes, new Comparator<Note>() {
+                @Override
+                public int compare(Note o1, Note o2) {
+                    if (o1.getTitle().compareToIgnoreCase(o2.getTitle()) <= 0) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                }
+            });
+        } else if (oldToNew == true){
+            Collections.sort(notes, new Comparator<Note>() {
+                @Override
+                public int compare(Note o1, Note o2) {
+                    if (o1.getDateTime() < o2.getDateTime()) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                }
+            });
+        }
 
         if (notes != null || notes.size() > 0) {
             final NoteAdapter na = new NoteAdapter(this, R.layout.item_format, notes);
