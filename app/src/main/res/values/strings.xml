@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Notepad</string>
+    <string name="menu_action_addNote">+</string>
+    <string name="menu_action_setting">setting</string>
+    <string name="menu_action_add_note">Add Note</string>
+    <string name="menu_action_settings">Settings</string>
+    <string name="layout_action_edit_title">Edit Title</string>
+    <string name="menu_action_save">Save</string>
+    <string name="menu_action_new_note">New Note</string>
+</resources>

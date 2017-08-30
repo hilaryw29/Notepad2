@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style
+        name="Original"
+        parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryO</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkO</item>
+        <item name="colorAccent">@color/colorAccentO</item>
+    </style>
+
+    <!--<style-->
+        <!--name="Night_Theme"-->
+        <!--parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/colorPrimaryN</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDarkN</item>-->
+        <!--<item name="colorAccent">@color/colorAccentN</item>-->
+    <!--</style>-->
+
+</resources>
