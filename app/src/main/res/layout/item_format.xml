@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listNoteTitle"
+        android:fontFamily="sans-serif-light"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="TITLE"
         android:layout_marginLeft="10dp" />
@@ -26,6 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listNoteContent"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="THIS IS A PREVIEW"
         android:layout_marginLeft="10dp"/>

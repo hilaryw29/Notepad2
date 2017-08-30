@@ -24,7 +24,6 @@ public class NewNoteActivity extends AppCompatActivity {
     private MultiAutoCompleteTextView mEditContent;
     private String mNoteFileName;
     private Note loadedNote;
-    boolean pleaseDelete = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +107,6 @@ public class NewNoteActivity extends AppCompatActivity {
             note = new Note(loadedNote.getDateTime(), mEditTitle.getText().toString(),
                     mEditContent.getText().toString());
         }
-
 
 
         if (Utilities.saveNote(this, note)){

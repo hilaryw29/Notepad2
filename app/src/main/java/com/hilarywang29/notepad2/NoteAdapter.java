@@ -23,7 +23,6 @@ public class NoteAdapter extends ArrayAdapter <Note> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //return super.getView(position, convertView, parent);
 
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_format,null);
@@ -38,12 +37,7 @@ public class NoteAdapter extends ArrayAdapter <Note> {
 
             title.setText(note.getTitle());
             date.setText(note.getDateTimeFormatted(getContext()));
-
-            if (note.getContent().length() > 50){
-                content.setText(note.getContent().substring(0,50));
-            } else {
-                content.setText(note.getContent());
-            }
+            content.setText(note.getContent());
         }
 
         return convertView;
