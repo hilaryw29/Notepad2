@@ -11,9 +11,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
+// Serializable saves notes to hard drive/storage
 public class Note implements Serializable {
 
+    // Initializes variables to store note creation time, title, and content
     private long mDateTime;
     private String mTitle;
     private String mContent;
@@ -24,6 +25,7 @@ public class Note implements Serializable {
         mTitle = title;
     }
 
+    // Gets note creation time, content, and title of note. Stores them inside respective variables
     public void setContent (String content){
         mContent = content;
     }
@@ -48,6 +50,7 @@ public class Note implements Serializable {
         return mTitle;
     }
 
+    // Formats creation date and time of note
     public String getDateTimeFormatted (Context context){
         Calendar c = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -25,6 +25,8 @@ import java.util.Comparator;
 public class MainActivity extends AppCompatActivity {
 
     private ListView mListNotes;
+
+    // Boolean variables used to store user preferences for how to order their existing notes
     boolean alpha = false;
     boolean oldToNew = true;
     boolean newToOld = false;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mListNotes = (ListView) findViewById(R.id.mainNotesListView);
     }
 
+    // Creates the menu in Main Activity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater mMenuInflater = getMenuInflater();
@@ -50,16 +53,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 //        if (item.getItemId() == R.id.action_setting) {
 //            Toast.makeText(MainActivity.this, "New Settings Updated", Toast.LENGTH_LONG).show();
+
+        // Checks if the icon to start a new note has been clicked. If yes, the user is taken ...
+        // to the NewNoteActivity to create a new note.
         if (item.getItemId() == R.id.action_addNote) {
             Intent intent = new Intent(this, NewNoteActivity.class);
             startActivity(intent);
             return true;
-        } else if (item.getItemId() == R.id.action_sortOrder){
-//            CharSequence sortOrder[] = new CharSequence[] {"Alphabetically", "Date Created (Old-New)", "Date Created (New-Old)"};
-
+        }
+        // Checks if the icon to sort existing notes has been clicked. If yes, an AlertDialog ...
+        // is created to get the user preferences for note order and sort existing notes accordingly
+        else if (item.getItemId() == R.id.action_sortOrder){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Sort Notes");
-//            builder.setMessage("How would you like to sort your notes?");
+            builder.setMessage("How would you like to sort your notes?");
             builder.setPositiveButton("Alphabetically", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -97,8 +104,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         mListNotes.setAdapter(null);
 
+        // Gets the arraylist of notes taken from the utilities method
         ArrayList<Note> notes = Utilities.getAllSavedNotes(getApplicationContext());
 
+        // Sorts the notes according to the order preference selected by the user
         if (newToOld == true) {
             Collections.sort(notes, new Comparator<Note>() {
                 @Override
@@ -135,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        // If there are no notes in the Note arraylist, make toast informing the user that there are ...
+        // no saved notes available.
         if (notes != null || notes.size() > 0) {
             final NoteAdapter na = new NoteAdapter(this, R.layout.item_format, notes);
             mListNotes.setAdapter(na);

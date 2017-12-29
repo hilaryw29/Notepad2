@@ -2,12 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--Icon to choose how existing notes are sorted-->
     <item
         android:id="@+id/action_sortOrder"
         android:title= "Sort Order"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_view_list_white_24dp"/>
 
+    <!--Icon to create a new note-->
     <item
         android:id="@+id/action_addNote"
         android:title= "@string/menu_action_new_note"

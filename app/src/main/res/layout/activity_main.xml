@@ -12,13 +12,14 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimaryO"
+        android:minHeight="60dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         app:theme= "@style/ThemeOverlay.AppCompat.Dark"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
+    <!--List of all existing notes-->
     <ListView
         android:id="@+id/mainNotesListView"
         android:layout_width="match_parent"

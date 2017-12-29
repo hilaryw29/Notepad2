@@ -24,12 +24,16 @@ public class NoteAdapter extends ArrayAdapter <Note> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        // Checks if convertView is null. If yes, the views are inflated manually according to the ...
+        // format specified in the item_format.xml
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_format,null);
         }
 
         Note note = getItem(position);
 
+        // If the note is not null, the note's title, content and date are taken from the Note method and ...
+        // set in the convertView.
         if (note != null){
             TextView title = (TextView) convertView.findViewById(R.id.listNoteTitle);
             TextView date = (TextView) convertView.findViewById(R.id.listNoteDate);

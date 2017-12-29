@@ -20,11 +20,15 @@ public class Utilities {
     public static final String FILE_EXTENSION = ".bin";
 
     public static boolean saveNote(Context context, Note note){
+
+        // Saves notes with a file name composed of their date/time of creation and the file extension
         String fileName = String.valueOf(note.getDateTime()) + FILE_EXTENSION;
 
         FileOutputStream fos;
         ObjectOutputStream oos;
 
+        // Creates a new file on the device and writes data from the note to the file created
+        // If an error occurs, a StackTrace is printed and the user is notified
         try {
             fos = context.openFileOutput(fileName, context.MODE_PRIVATE);
             oos = new ObjectOutputStream(fos);
@@ -45,6 +49,8 @@ public class Utilities {
         File filesDirectory = context.getFilesDir();
         ArrayList <String> noteFiles = new ArrayList<>();
 
+        // Adds all files in the filesDirectory list that ends with the FILE_EXTENSION constant ...
+        // into the noteFiles arraylist
         for (String file : filesDirectory.list()){
             if (file.endsWith(FILE_EXTENSION)){
                 noteFiles.add(file);
@@ -54,11 +60,13 @@ public class Utilities {
         FileInputStream fis;
         ObjectInputStream ois;
 
+        // For all the files in the noteFiles list
         for (int i = 0; i < noteFiles.size(); i++){
             try {
                 fis = context.openFileInput(noteFiles.get(i));
                 ois = new ObjectInputStream(fis);
 
+                // Casts files from the noteFiles list into a Note object
                 notes.add((Note)ois.readObject());
 
                 fis.close();
@@ -97,6 +105,7 @@ public class Utilities {
         return null;
     }
 
+    // Deletes note file
     public static void deleteNote(Context context, String fileName) {
         File dir = context.getFilesDir();
         File file = new File(dir, fileName);

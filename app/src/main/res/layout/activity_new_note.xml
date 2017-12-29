@@ -9,17 +9,19 @@
     tools:context="com.hilarywang29.notepad2.NewNoteActivity"
     style="@style/Original">
 
+    <!--Toolbar-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimaryO"
+        android:minHeight="60dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         app:theme= "@style/ThemeOverlay.AppCompat.Dark"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
+    <!--Heading: Title-->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -32,6 +34,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp" />
 
+    <!--Type/edit note title here-->
     <EditText
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
@@ -49,6 +52,7 @@
         android:hint= "Edit Title" />
 
 
+    <!--Heading: Content-->
     <TextView
         android:id="@+id/content"
         android:layout_width="wrap_content"
@@ -60,9 +64,8 @@
         android:textStyle="bold"
         android:layout_alignLeft="@+id/editTitle"
         android:layout_marginLeft="15dp"/>
-        <!--android:layout_marginBottom="5dp"-->
 
-
+    <!--Type/edit note content here-->
     <MultiAutoCompleteTextView
         android:gravity="top"
         android:id="@+id/editContent"

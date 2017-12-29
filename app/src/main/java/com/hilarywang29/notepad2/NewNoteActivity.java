@@ -20,6 +20,7 @@ import com.hilarywang29.notepad2.R;
 
 public class NewNoteActivity extends AppCompatActivity {
 
+    // Assigns variable to information in the EditText and MultiAutoCompleteTextView in the activity_new_note layout
     private EditText mEditTitle;
     private MultiAutoCompleteTextView mEditContent;
     private String mNoteFileName;
@@ -49,12 +50,15 @@ public class NewNoteActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
     }
 
+    // Creates menu in NewNoteActivity
     public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater mMenuInflater = getMenuInflater();
         mMenuInflater.inflate(R.menu.new_note_menu, menu);
         return true;
     }
 
+    // Depending on the icon the user clicks on in the toolbar, the respective functions to...
+    // either save or delete the note is called.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_saveNote){
@@ -67,11 +71,12 @@ public class NewNoteActivity extends AppCompatActivity {
         return true;
     }
 
+    // Deletes Note
     private void deleteNote() {
         if (loadedNote == null){
             finish();
         } else {
-
+            // Prompts user to confirm whether or not they wish to delete the note. If true, the note is deleted.
             AlertDialog.Builder dialog = new AlertDialog.Builder (this)
                     .setTitle("Delete Note")
                     .setMessage("Do you wish to delete \"" + mEditTitle.getText().toString() + "\"?")
@@ -92,9 +97,13 @@ public class NewNoteActivity extends AppCompatActivity {
         }
     }
 
+    // Saves note
     private void saveNote (){
         Note note;
 
+        // Checks to make sure that the title and content of the note are not both left blank.
+        // If both fields are empty, the user is unable to save the note and is prompted to fill ...
+        // In at least one of the fields in order to save.
         if (mEditTitle.getText().toString().isEmpty()&& mEditContent.getText().toString().isEmpty()){
             Toast.makeText(this, "Title and content cannot both be left blank", Toast.LENGTH_LONG).show();
             return;
@@ -108,7 +117,9 @@ public class NewNoteActivity extends AppCompatActivity {
                     mEditContent.getText().toString());
         }
 
-
+        // If Utilities.saveNote returns true, meaning the note was saved successfully, a toast is created...
+        // to inform the user. If an error occured, a toast is created notifying the user of the error ...
+        // likely caused by insufficient disk drive on the device.
         if (Utilities.saveNote(this, note)){
             Toast.makeText(NewNoteActivity.this, "Note Saved", Toast.LENGTH_LONG).show();
         } else {

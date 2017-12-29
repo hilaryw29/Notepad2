@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     style="@style/Original">
 
-
+    <!--Formatting for note entries in the main activity-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
