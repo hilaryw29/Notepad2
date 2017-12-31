@@ -80,6 +80,7 @@ public class Utilities {
         return notes;
     }
 
+    // Checks if file exists, if so, retrives file from disk drive/storage
     public static Note getNoteByName (Context context, String fileName){
         File file = new File (context.getFilesDir(), fileName);
         Note note;
