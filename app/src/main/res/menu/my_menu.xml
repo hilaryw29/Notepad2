@@ -7,7 +7,7 @@
         android:id="@+id/action_sortOrder"
         android:title= "Sort Order"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_view_list_white_24dp"/>
+        android:icon="@drawable/ic_view_list_white_24dp" />
 
     <!--Icon to create a new note-->
     <item
